@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestão de Compras</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Adicionando Boxicons -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <aside>
+        <nav class="sidebar">
+          <div class="user-info">
+            <img src="./FUNDO AZUL.jpg" alt="Usuário" class="user-photo" />
+            <!-- Coloque a URL da foto do usuário -->
+            <div class="user-details">
+              <strong>Henrique</strong>
+              <!-- Nome do usuário -->
+              <p>Comprador</p>
+              <!-- Função do usuário -->
+            </div>
+          </div>
+
+          <ul>
+            <li>
+              <a href="#" onclick="loadContent('fornecedores')">Fornecedores</a>
+            </li>
+            <li><a href="#" onclick="loadContent('compras')">Compras</a></li>
+            <!-- Corrigido 'Compras' para 'compras' -->
+          </ul>
+        </nav>
+      </aside>
+
+      <main id="content">
+        <!-- O conteúdo da página será carregado dinamicamente aqui -->
+      </main>
+    </div>
+
+    <!-- Modal para adicionar fornecedor -->
+    <div id="modalForm" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="fecharModal()">&times;</span>
+        <h2>Adicionar Fornecedor</h2>
+        <form id="fornecedorForm">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome" required />
+
+          <label for="pedidoMinimo">Pedido Mínimo:</label>
+          <input type="number" id="pedidoMinimo" name="pedidoMinimo" required />
+
+          <label for="frequencia">Frequência de Pedido:</label>
+          <select
+            id="frequencia"
+            name="frequencia"
+            required
+            onchange="ativarFrequencia()"
+          >
+            <option value="semanal">Semanal</option>
+            <option value="quinzenal">Quinzenal</option>
+            <option value="mensal">Mensal</option>
+          </select>
+
+          <label for="categoria">Categoria:</label>
+          <select id="categoria" name="categoria" required>
+            <option value="hidraulico">Hidráulico</option>
+            <option value="eletrico">Elétrico</option>
+          </select>
+
+          <label for="foto">Foto do Fornecedor:</label>
+          <input type="file" id="foto" accept="image/png, image/jpeg" />
+
+          <div id="imagePreview" class="image-preview"></div>
+
+          <button
+            type="button"
+            onclick="adicionarFornecedor()"
+            aria-label="Adicionar Fornecedor"
+          >
+            <i class="bx bx-plus"></i> Adicionar
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal para adicionar compra -->
+    <div id="modalCompra" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="fecharModalCompra()">&times;</span>
+        <h2>Cadastrar Compra</h2>
+        <form id="compraForm">
+          <label for="fornecedorCompra">Fornecedor:</label>
+          <select id="fornecedorCompra" name="fornecedorCompra" required>
+            <option value="">Selecione um fornecedor</option>
+          </select>
+
+          <label for="dataCompra">Data:</label>
+          <input type="date" id="dataCompra" name="dataCompra" required />
+
+          <label for="valorCompra">Valor:</label>
+          <input type="number" id="valorCompra" name="valorCompra" required />
+
+          <label for="statusCompra">Status:</label>
+          <select id="statusCompra" name="statusCompra" required>
+            <option value="Analisado">Analisado</option>
+            <option value="Cotado">Cotado</option>
+            <option value="Comprado">Comprado</option>
+          </select>
+
+          <button
+            type="button"
+            onclick="adicionarCompra()"
+            aria-label="Adicionar Compra"
+          >
+            <i class="bx bx-plus"></i> Adicionar
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
